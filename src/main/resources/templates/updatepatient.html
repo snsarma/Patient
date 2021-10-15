@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Update Patient Details</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>Update Patient Details</h1>
+        </div>
+        <form th:action="@{/updatePatient}" th:object="${patient}"
+            method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Patient Id: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{subjectId}" class="form-control" required />
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Age: </label>
+                <div class="col-8">
+                    <input type="number" th:field="*{age}" class="form-control"
+                            required minlength="6" maxlength="10"/>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Gender: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{gender}" class="form-control"
+                            required minlength="2" maxlength="20"/>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Disease Type: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{diseaseType}" class="form-control"
+                            required minlength="2" maxlength="20" />
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Race: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{race}" class="form-control"
+                            required minlength="2" maxlength="20" />
+                </div>
+            </div>
+            
+             <div class="form-group row">
+                <label class="col-4 col-form-label">Ethnicity: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{ethnicity}" class="form-control"
+                            required minlength="2" maxlength="20" />
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Year Of Diagnosis: </label>
+                <div class="col-8">
+                    <input type="number" th:field="*{yearOfDiagnosis}" class="form-control"
+                            required minlength="2" maxlength="20" />
+                </div>
+            </div>
+             
+              <div class="form-group row">
+                <label class="col-4 col-form-label">Diet Info: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{dietInfo}" class="form-control"
+                            required minlength="2" maxlength="20" />
+                </div>
+                </div> 
+                <div class="form-group row">
+                <label class="col-4 col-form-label">Fitness Info: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{fitnessInfo}" class="form-control"
+                            required minlength="2" maxlength="20" />
+                </div>
+                </div>
+                <div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
