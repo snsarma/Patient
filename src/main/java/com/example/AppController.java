@@ -34,6 +34,12 @@ public class AppController {
     	model.addAttribute("patient", new Patient());
         return "updatepatient";
     }
+    
+    @GetMapping("/registerPatientDetails")
+    public String register(Model model) {
+    	model.addAttribute("patient", new Patient());
+        return "registerpatient";
+    }
      
     @GetMapping("")
     public String viewHomePage() {
@@ -56,12 +62,12 @@ public class AppController {
         for(PatientModel patientModel:listPatient) {
             Patient patient = new Patient();
             patient.setSubjectId(patientModel.getSubjectId());
-            patient.setAge(patientModel.getAge());
             patient.setGender(patientModel.getGender());
             patient.setDiseaseType(patientModel.getDiseaseType()); 	
             patient.setYearOfDiagnosis(patientModel.getYearOfDiagnosis());
             patient.setEthnicity(patientModel.getEthnicity());
             patient.setRace(patientModel.getRace());
+            patient.setAge(patientModel.getAge());
             if(patientModel.getDietFitness() != null) {
             	
             	patient.setFitnessInfo(patientModel.getDietFitness().getFitnessInfo());
@@ -76,15 +82,20 @@ public class AppController {
          
         return "patients";
     }
-    
-    public PatientModel processRegister(@RequestBody PatientModel patient) {
+
+    @PostMapping("/registerPatient")
+    public String processRegister(Patient patient) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(patient.getPassword());
         patient.setPassword(encodedPassword);
-         
-        patientRepo.save(patient);
-         
-        return patient;
+        PatientModel patientmodel = new PatientModel(); 
+        patientmodel.setAge(patient.getAge());
+        patientmodel.setPatientName(patient.getPatientName());
+        patientmodel.setPassword(patient.getPassword());
+        patientmodel.setGender(patient.getGender());
+        patientmodel.setDiseaseType(patient.getDiseaseType());
+        patientRepo.save(patientmodel);        
+        return "patientRegistered";
     }
     
 	
